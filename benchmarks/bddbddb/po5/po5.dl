@@ -1,0 +1,27 @@
+N 1024
+
+.bddvarorder N1_N2_N3_N4_N5_N6_N7_N8_N9_N10_N11_N12
+
+Check(n1:N0, n2:N1, n3:N2, n4:N3, n5:N4, n6: N5) inputtuples
+In(N6:N, n7:N, n8:N, n9:N, n10:N, n6: N11, in:N12) inputtuples
+A(l:N1, o:N2) outputtuples
+
+
+A(1,i) :- Check(a, b, c, d, e, f), In(a, b, c, d, e, f, i).
+A(2,i) :- Check(a, _, _, d, e, f), In(a, _, _, d, e, f, i).
+A(3,i) :- Check(a, b, _, d, e, f), In(a, b, _, d, e, f, i).
+A(4,i) :- Check(a, _, _, _, e, f), In(a, _, _, _, e, f, i).
+A(5,i) :- Check(a, b, _, _, _, f), In(a, b, _, _, _, f, i).
+A(6,i) :- Check(a, _, _, _, _, _), In(a, _, _, _, _, _, i).
+A(7, i) :- Check(a, b, _, d, e, f), In(a, b, _, d, e, f, i).
+A(8, i) :- Check(a, b, _, _, e, f), In(a, b, _, _, e, f, i).
+A(9, i) :- Check(a, b, _, _, _, f), In(a, b, _, _, _, f, i).
+A(10, i) :- Check(a, b, _, _, _, _), In(a, b, _, _, _, _, i).
+A(11, i) :- Check(a, b, c, _, e, f), In(a, b, c, _, e, f, i).
+A(12, i) :- Check(a, _, c, _, _, f), In(a, _, c, _, _, f, i).
+A(13, i) :- Check(a, b, c, _, _, _), In(a, b, c, _, _, _, i).
+A(14, i) :- Check(a, b, c, d, _, f), In(a, b, c, d, _, f, i).
+A(15, i) :- Check(a, _, c, d, _, _), In(a, _, c, d, _, _, i).
+
+
+
