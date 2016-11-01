@@ -2,19 +2,22 @@
 # --- a script to generate random fact files ---
 
 # get some parameters from the command line
-if (ARGV.length < 2 || ARGV.length > 3) then
-    puts "Usage: random_fact_generator.rb <num_columns> <num_rows> [max_value]"
+if (ARGV.length < 3 || ARGV.length > 4) then
+    puts "Usage: random_fact_generator.rb <seed> <num_columns> <num_rows> [max_value]"
     exit 1
 end
 
-num_columns = ARGV[0].to_i()
-num_entries = ARGV[1].to_i()
-max_value = (ARGV.length == 3) ? ARGV[2].to_i : [num_columns,num_entries].min/10
+seed = ARGV[0].to_i(36)
+num_columns = ARGV[1].to_i()
+num_entries = ARGV[2].to_i()
+max_value = (ARGV.length == 4) ? ARGV[3].to_i : [num_columns,num_entries].min/10
 
 if (max_value < 1) then
     max_value = 2
 end
 
+# seed the random number generator (to get reproducable results)
+srand (seed)
 
 # data generation
 num_entries.times do |i|
