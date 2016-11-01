@@ -1,4 +1,5 @@
-. ../utils.sh
+# include general utilities
+. `dirname $BASH_SOURCE[0]`/../utils.sh
 
 N=100000
 
