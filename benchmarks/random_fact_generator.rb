@@ -2,34 +2,34 @@
 # --- a script to generate random fact files ---
 
 # get some parameters from the command line
-if (ARGV.length < 3 || ARGV.length > 4) then
-    puts "Usage: random_fact_generator.rb <seed> <num_columns> <num_rows> [max_value]"
+if (ARGV.length < 3 ) then
+    puts "Usage: random_fact_generator.rb <seed> <num_rows> [max_value_c1, max_value_c2, ...]"
     exit 1
 end
 
+# read sead and number of entries
 seed = ARGV[0].to_i(36)
-num_columns = ARGV[1].to_i()
-num_entries = ARGV[2].to_i()
-max_value = (ARGV.length == 4) ? ARGV[3].to_i : [num_columns,num_entries].min/10
+num_rows = ARGV[1].to_i()
 
-if (max_value < 1) then
-    max_value = 2
+# read the value distribution
+dist=[]
+(ARGV.length-2).times do |i|
+    dist << ARGV[i+2].to_i
 end
 
 # seed the random number generator (to get reproducable results)
 srand (seed)
 
 # data generation
-num_entries.times do |i|
+num_rows.times do |i|
 
     # print a record
-    num_columns.times do |j|
+    dist.length.times do |i|
 
         # print a value
-        print rand(max_value)
+        print rand(dist[i])
 
-        # add a tap
-        print "\t" unless j+1 == num_columns
+        print "\t" unless i+1 == dist.length
     end
 
     # finish with a new-line
