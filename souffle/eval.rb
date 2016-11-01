@@ -12,6 +12,8 @@ working_dir = "./evaluation"
 
 timeout="60s"
 
+@debug = false
+
 # -------------------------------------------------------------
 
 
@@ -21,7 +23,17 @@ Find.find(benchmark_dir) do |path|
 	dl_files << File.absolute_path(path) if path =~ /.*\.dl$/
 end
 
-puts dl_files
+# filter out user-selected test cases
+cases = ARGV
+if cases.length > 0 then
+    all_dl_files = dl_files
+    dl_files = []
+    all_dl_files.each do |dlFile|
+        name = File.basename(dlFile,".dl")
+        dl_files << dlFile unless !cases.include?(name)
+    end
+end
+
 
 class Measurement
 	attr_accessor :compile_time, :run_time, :memory_usage, :num_indexes, :exit_status
@@ -80,17 +92,22 @@ def eval_case(timeout,cmd,execname)
 	result = Measurement.new
 
 	# run compiler
+    puts "\tcompiling #{execname}..."
 	start = Time.now
-	puts `#{cmd} -o #{execname}`
+	out = `#{cmd} -o #{execname}`
 	result.compile_time = Time.now - start
+
+    # print compiler log
+    puts out unless !@debug
 	
     # get the number of indexes
     result.num_indexes = `grep -o "ram::index<" #{execname}.cpp | wc -l`.to_i()
 
 	# run evaluation
+    puts "\trunning #{execname}..."
 	stats = `/usr/bin/time -v timeout #{timeout} ./#{execname} 2>&1`
 
-	puts stats
+	puts stats unless !@debug
 
     # check the exit status
 	e = stats.match(/Exit status.*: ([\d]+)$/).captures[0]
@@ -104,6 +121,14 @@ def eval_case(timeout,cmd,execname)
 	m = stats.match(/Maximum resident.*: ([\d]+)$/).captures[0]
 	result.memory_usage = m.to_i;
 
+    # print some result
+    if (result.exit_status == 124) then
+        puts "\t\t -timeout-\n"
+    else
+        puts "\t\tt = #{result.run_time}ms, m = #{result.memory_usage}KB"
+    end
+
+    # done
 	return result
 end
 
