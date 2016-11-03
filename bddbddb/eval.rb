@@ -7,7 +7,7 @@ require 'fileutils'
 souffle_root = "~/coding/c++/souffle"
 souffle_exec  = "#{souffle_root}/build_release/src/souffle"
 
-bddbddb_exec = "???"
+bddbddb_exec = "java -jar ~/libs/bddbddb-latest/bddbddb-full.jar"
 
 benchmark_dir = "../benchmarks"
 working_dir = "./evaluation"
@@ -128,7 +128,16 @@ dl_files.each do |dlFile|
 
     # create facts
     puts "Preparing test case " + name + " (#{i}/#{num_cases}).."
-    # `/bin/bash #{fact_generator}`
+    `/bin/bash #{fact_generator}`
+
+    # adapt facts for bddbddb
+    if File.exists?(facts) then
+        Find.find(facts) do |path|
+            next unless path =~ /.*\.facts$/ 
+            name = File.basename(path,".facts")
+            File.rename("#{path}","#{name}.tuples")
+        end
+    end
 
     # create bddbddb input file
     puts "Creating bddbddb specification .."
@@ -136,14 +145,14 @@ dl_files.each do |dlFile|
 
     # run evaluations
 	puts "Running test case " + name + " (#{i}/#{num_cases}).."
-    # TODO: run bddbddb here
-    result.data = eval_case(timeout,"sleep 1")
+    result.data = eval_case(timeout,"#{bddbddb_exec} #{name}.dl")
 
 	# record result
 	data << result
 
     # cleanup
     `rm -r #{facts}`
+    `rm *.tuples`
 
 	print_result(data)
 
