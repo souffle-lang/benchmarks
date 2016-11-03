@@ -1,8 +1,8 @@
 # include general utilities
 . `dirname $BASH_SOURCE[0]`/../utils.sh
 
-N=100000        # number of entries
-C=10            # range of entries
+N=500000        # number of entries
+C=100            # range of entries
 
 # create fact files as needed
 #             | name | |entries| |       ranges        |
