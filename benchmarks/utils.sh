@@ -6,3 +6,7 @@ gen_fact_file() {
     ruby $src_dir/random_fact_generator.rb $@ > facts/$1.facts
 }
 
+# set default benchmark size to small
+SIZE=${SIZE:=small}
+
+
