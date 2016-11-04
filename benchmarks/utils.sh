@@ -7,6 +7,6 @@ gen_fact_file() {
 }
 
 # set default benchmark size to small
+SIZE=$1
 SIZE=${SIZE:=small}
-
 

@@ -2,7 +2,7 @@
 . `dirname $BASH_SOURCE[0]`/../utils.sh
 
 # destinguish benchmark sizes
-case $1 in
+case $SIZE in
     small)
         N=5
         S=5          # number of entries

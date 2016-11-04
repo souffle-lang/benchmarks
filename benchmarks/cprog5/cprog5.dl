@@ -5,14 +5,18 @@
 // }
 // assert(z = y = z)
 
+.decl low(x:number) input
+.decl mid(x:number) input
+.decl high(x:number) input
+
 .decl loop(i:number, x:number, y:number, z:number)
 .decl R() output
 
 loop(0, 0, 0, 0).
 
-loop(1, 5, y, z) :- loop(0, _, y, z).
-loop(2, x, y, 3) :- loop(1, x, y, _).
-loop(3, x, 1, z) :- loop(0, _, _, z), loop(1, x, _, _).
+loop(1, h, y, z) :- loop(0, _, y, z),high(h).
+loop(2, x, y, m) :- loop(1, x, y, _),med(m).
+loop(3, x, l, z) :- loop(0, _, _, z), loop(1, x, _, _),low(l).
 
 loop(7, x, y, z)  :- loop(3, x, y, z), x <= z.
 loop(4, x, y, z)  :- loop(3, x, y, z), x > z.

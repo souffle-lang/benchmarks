@@ -1,12 +1,8 @@
 # include general utilities
 . `dirname $BASH_SOURCE[0]`/../utils.sh
 
-S=10    # number of states
-L=5     # number of letters
-T=30    # number of transitions
-
 # destinguish benchmark sizes
-case $1 in
+case $SIZE in
     small)
         S=500         
         L=10           

@@ -1,12 +1,10 @@
 # include general utilities
 . `dirname $BASH_SOURCE[0]`/../utils.sh
 
-N=400000        # number of entries
-C=100            # range of entries
 
 # destinguish benchmark sizes
 
-case $1 in
+case $SIZE in
     small)
         N=500          # number of entries
         C=10           # range of entries
