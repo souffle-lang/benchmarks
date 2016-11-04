@@ -7,6 +7,9 @@ gen_fact_file() {
 }
 
 # set default benchmark size to small
-SIZE=$1
+TMP_SIZE=$1
+SIZE=${TMP_SIZE:=$SIZE}
 SIZE=${SIZE:=small}
+
+echo "Generating factos of size: $SIZE"
 
