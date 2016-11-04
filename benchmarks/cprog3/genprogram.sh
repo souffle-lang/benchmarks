@@ -33,6 +33,6 @@ loop(5, x, y, z) :- loop(4, x, y, z).
 loop(5, x-1, y, z) :- loop(5, x, y, z), x > 0. 
 R() :- loop(5, _, _, z), z >= 0. x = 0"
 
-echo $PROG > ./pp1.dl
+echo $PROG > ./cprog3.dl
 
 

@@ -39,6 +39,6 @@ loop(6, x, y, z) :- loop(5, x, y, z), z <= y.
 
 Res() :- loop(6, x, y ,z), x = y, y = z."
 
-echo $PROG > ./pp1.dl
+echo $PROG > ./cprog2.dl
 
 

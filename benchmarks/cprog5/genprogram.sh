@@ -41,6 +41,6 @@ loop(3, x, y, z+1)  :- loop(5, x, y, z).
 
 R() :- loop(7, x, _, z),  x = z."
 
-echo $PROG > ./pp1.dl
+echo $PROG > ./cprog5.dl
 
 

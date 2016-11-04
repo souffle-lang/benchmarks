@@ -38,6 +38,6 @@ loop(2, x, y+1, z) :- loop(2, _, y, z), loop(1, x, _, _),  y < z.
 loop(3, x, y, z) :- loop(2, x, y, z), y >= z.
 Res() :- loop(3, _, y, _), y = ${HIGH}."
 
-echo $PROG > ./pp1.dl
+echo $PROG > ./cprog1.dl
 
 

@@ -48,6 +48,6 @@ R() :- loop(7, x, y, z),  x = z, y = z.
 
 "
 
-echo $PROG > ./pp1.dl
+echo $PROG > ./cprog4.dl
 
 
