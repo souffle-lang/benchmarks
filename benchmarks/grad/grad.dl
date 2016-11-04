@@ -1,0 +1,10 @@
+.decl student (node1:number) input
+.decl course (node1:number) input
+.decl pre (node1:number, node2:number) input
+.decl take (node1:number, node2:number) input
+
+.decl grad (node1:number) output
+
+pre(Pre,Post) :- pre(Pre,X), pre(X,Post).
+
+grad(S) :- take(S,1), take(S,2).

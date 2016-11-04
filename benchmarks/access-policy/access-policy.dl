@@ -1,0 +1,59 @@
+// Example adapted (hacked) from Olson, Gunter, Madhusudan CCS'08, Data is random
+
+.decl view_employee(x : number, p:number, ssn:number, s:number, e:number, d:number, pos:number, bday:number) output
+.decl view_cwPriv(n : number, person :number, bank1Priv :number, bank2Priv : number) input
+.decl view_bank1(n :number, Data1 :number, Data2 :number) input
+.decl view_bank2(n :number, Data1 : number, Data2:number) input
+
+.decl employee(person : number, ssn: number, salary : number, email: number, dept : number, pos : number, bday : number) input
+
+.decl inslogtable(user :number, person :number, day : number) input
+
+.decl insurance(user : number) input
+
+.decl bank1(d:number, d2:number) input
+.decl bank2(d:number, d2:number) input
+
+.decl inscwPriv(user : number, x:number, y:number) input
+.decl delcwPriv(user:number, x:number, y:number) input
+.decl cwPriv(person:number, bank1Priv : number, Bank2Privi : number) input
+
+
+view_employee(4, Person, SSN, Salary, Email, Dept, Position, Bday) :- 
+  employee(Person, SSN, Salary, Email, Dept, Position, Bday).
+
+view_employee(User, Person, SSN, Salary, Email, Dept, Position, Bday) :- 
+  User=Person, view_employee(4, Person, SSN, Salary, Email, Dept, Position, Bday).
+
+view_employee(User, Person, SSN, Salary, Email, Dept, Position, Bday) :-
+  view_employee(4, User, _, _, _, Dept,3, _),
+  view_employee(4, Person, SSN, Salary, Email, Dept, Position, Bday).
+
+view_employee(User, Person, 0, 0, Email, Dept, Position, Bday) :-
+  view_employee(4, User, _, _, _, _, _, _),
+  view_employee(4, Person, _, _, Email, Dept, Position, Bday).
+
+view_employee(User, Person, 0, 0, 0, 0, 0, Bday) :-
+  insurance(User),
+  view_employee(4, Person, _, _, _, _, _, Bday),
+  inslogtable(User, Person, 092311).
+
+view_cwPriv(2, Person, Bank1Priv, Bank2Priv) :- 
+  cwPriv(Person, Bank1Priv, Bank2Priv).
+
+view_bank1(2, Data1, Data2) :-
+  bank1(Data1, Data2).
+
+view_bank1(User, Data1, Data2) :-
+  view_cwPriv(2, User, 1, _),
+  delcwPriv(User, 1, _), inscwPriv(User, 1, 0),
+  view_bank1(2, Data1, Data2).
+
+view_bank2(2, Data1, Data2) :-
+  bank2(Data1, Data2).
+
+view_bank2(User, Data1, Data2) :-
+  view_cwPriv(2, User, _, 1),
+  delcwPriv(User, _, 1), 
+  inscwPriv(User, 0, 1),
+  view_bank2(2, Data1, Data2).

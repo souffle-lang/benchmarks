@@ -1,0 +1,11 @@
+.decl link(node1:number, node2:number, node3:number) input
+
+.decl St_Reachable(node1:number, node2:number) 
+.decl Li_Reachable(node1:number, node2:number) 
+.decl platform2_reach(node1:number, node2:number)  output
+
+St_Reachable(x, y) :- link(_,x,y).
+St_Reachable(x, y) :- St_Reachable(x, z), link(_, z, y).
+Li_Reachable(x, u) :- St_Reachable(x, z), link(u, z, _).
+platform2_reach(2, y) :- St_Reachable(2, y), link(_, _, y).
+

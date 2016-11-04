@@ -1,59 +1,69 @@
-po1	26
-po3	22
-po2	22
-components	18
-po5	16
-nfsa2fsa	15
-po4	12
-access2	12
-access3	12
-java-pointsto	11
-turing1	9
-hmmer	9
-access-policy	8
-ranpo	8
-topological_ordering	8
-sequences	8
-tak	7
 cellular_automata	7
-cprog2	6
-grad	6
 components_generic	6
-access1	6
-minmax	6
 tic-tac-toe	5
-cprog1	4
-andersen	4
-trans	4
 x9	4
-ackermann	4
-fib	4
 lucas	4
-family	4
 orbits	4
 orbits1	4
 strategies	4
-tc	4
-pointsto	4
 traces	4
 lubm	4
-cprog3	3
-cprog4	3
-cprog5	3
 catalan	3
 rec_lists	3
 nqueens	3
 cba_expr_value	3
-equal	2
 grammar	2
 indirect_negation	2
 prime2	2
 dfa	2
 term	2
 dfa_summary_function	2
-metro	1
 func	1
 func2	1
 list	1
 palindrome	1
 tree	1
+
+
+NOT SURE HOW TO 
+==================
+fib	4
+minmax	6
+equal	2
+ackermann	4
+
+TIME NEEDED  (leave to last)
+===========================
+java-pointsto	11
+hmmer	9
+andersen	4
+
+DONE
+==========================
+trans	4
+tc	4
+metro	1
+family	4
+tak	7
+po1	26 S
+po3	22 S
+po2	22 S
+components	18 S
+po5	16 S
+nfsa2fsa	15 S
+po4	12 S
+access2	12 S
+access3	12 S
+turing1	9 S
+cprog3	3 S
+cprog4	3 S
+cprog5	3 S
+pointsto	4 S
+access1	6 S
+cprog2	6 S
+cprog1	4 S
+access-policy	8
+ranpo	8
+topological_ordering	8
+sequences	8
+grad	6

@@ -1,0 +1,8 @@
+// Type declarations 
+// Set output flag depending on stage 
+.decl A (x:number, y:number) input output
+
+// Transitive Closure 
+A(x,z) :- A(x,y), A(y,z).
+
+
