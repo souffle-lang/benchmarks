@@ -1,6 +1,4 @@
-cellular_automata	7
 components_generic	6
-tic-tac-toe	5
 x9	4
 lucas	4
 orbits	4
@@ -38,6 +36,11 @@ java-pointsto	11
 hmmer	9
 andersen	4
 
+
+
+tic-tac-toe	5
+
+
 DONE
 ==========================
 trans	4
@@ -67,3 +70,4 @@ ranpo	8
 topological_ordering	8
 sequences	8
 grad	6
+cellular_automata	7
