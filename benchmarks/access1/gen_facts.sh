@@ -1,8 +1,9 @@
+
 # include general utilities
 . `dirname $BASH_SOURCE[0]`/../utils.sh
 
 # destinguish benchmark sizes
-case $SIZE in
+case $1 in
     small)
         N=500          # number of entries
         C=10           # range of entries
@@ -13,6 +14,10 @@ case $SIZE in
         ;;
     large)
         N=50000000     # number of entries
+        C=100          # range of entries
+        ;;
+    xlarge)
+        N=500000000     # number of entries
         C=100          # range of entries
         ;;
 esac

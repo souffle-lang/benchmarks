@@ -1,8 +1,25 @@
 # include general utilities
 . `dirname $BASH_SOURCE[0]`/../utils.sh
 
-N=2000    # number of connections
-C=500     # number of entities
+# destinguish benchmark sizes
+case $1 in
+    small)
+        N=200          # number of entries
+        C=50           # range of entries
+        ;;
+    medium)
+        N=2000      # number of entries
+        C=500          # range of entries
+        ;;
+    large)
+        N=20000     # number of entries
+        C=500          # range of entries
+        ;;
+    xlarge)
+        N=200000     # number of entries
+        C=500          # range of entries
+        ;;
+esac
 
 # create fact files as needed
 #             | name | |entries| |range_start|  |range_end|
