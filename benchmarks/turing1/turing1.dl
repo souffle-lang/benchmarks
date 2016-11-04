@@ -1,7 +1,6 @@
 // Implementation of a Turing Maching in Souffle
 
 .type number
-.type number
 
 //
 // Tape of the Turing Machine 
