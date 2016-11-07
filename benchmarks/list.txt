@@ -23,7 +23,6 @@ ackermann	4
 
 Print program
 ======================
-orbits	4 (needs lower bound)
 orbits1	4 (needs lower bound)
 lucas	4 (needs lower bound)
 catalan	3
@@ -41,6 +40,7 @@ lubm
 
 DONE
 ==========================
+orbits	4 PORT
 trans	4 PORT
 tc	4 PORT
 metro	1 ??? == cant get it to go over 0s

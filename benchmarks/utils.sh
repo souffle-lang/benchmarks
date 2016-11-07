@@ -11,5 +11,5 @@ TMP_SIZE=$1
 SIZE=${TMP_SIZE:=$SIZE}
 SIZE=${SIZE:=small}
 
-echo "Generating factos of size: $SIZE"
+echo "Generating facts of size: $SIZE"
 
