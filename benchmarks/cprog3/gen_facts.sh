@@ -4,19 +4,19 @@
 case $SIZE in
     small)
         LOW=0          # number of entries
-        HIGH=300    # range of entries
+        HIGH=3000000    # range of entries
         ;;
     medium)
         LOW=0          # number of entries
-        HIGH=3000           # range of entries
+        HIGH=30000000           # range of entries
         ;;
     large)
         LOW=0          # number of entries
-        HIGH=30000           # range of entries
+        HIGH=1100000000           # range of entries
         ;;
     xlarge)
         LOW=0          # number of entries
-        HIGH=300000           # range of entries
+        HIGH=3000000000           # range of entries
         ;;
 esac
 
