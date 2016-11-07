@@ -23,8 +23,17 @@ case $SIZE in
         L=100
         T=300
         ;;
+    custom)
+        N=${N:=10}
+        echo "Custom problem size $N"
+        S=$N                        # number of states
+        L=`expr $N / 10`
+        T=`expr $S \* $L`
+        ;;
 esac
 
+# small size: N=10
+# medium: N=13
 
 
 # create fact files as needed
