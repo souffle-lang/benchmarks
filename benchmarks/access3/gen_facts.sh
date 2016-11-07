@@ -8,7 +8,7 @@ case $SIZE in
         C=10           # range of entries
         ;;
     medium)
-        N=5000000      # number of entries
+        N=10000000      # number of entries
         C=100          # range of entries
         ;;
     large)

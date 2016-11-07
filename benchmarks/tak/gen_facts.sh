@@ -9,16 +9,16 @@ case $SIZE in
         HIGH2=10           # range of entries
         ;;
     medium)
-        LOW1=-100          # number of entries
-        HIGH1=100           # range of entries
+        LOW1=-20          # number of entries
+        HIGH1=20           # range of entries
         LOW2=0          # number of entries
-        HIGH2=100           # range of entries        
+        HIGH2=20           # range of entries        
         ;;
     large)
-        LOW1=-1000          # number of entries
-        HIGH1=1000           # range of entries
+        LOW1=-30          # number of entries
+        HIGH1=30           # range of entries
         LOW2=0          # number of entries
-        HIGH2=1000           # range of entries        
+        HIGH2=30           # range of entries        
         ;;
     xlarge)
         LOW1=-10000          # number of entries

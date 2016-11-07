@@ -5,11 +5,11 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=500          # number of entries
+        N=2000000          # number of entries
         C=10           # range of entries
         ;;
     medium)
-        N=5000000      # number of entries
+        N=80000000      # number of entries
         C=100          # range of entries
         ;;
     large)

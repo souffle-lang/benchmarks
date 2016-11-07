@@ -5,20 +5,20 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=500          # number of entries
+        N=1000000          # number of entries
         C=100           # range of entries
         ;;
     medium)
-        N=5000000      # number of entries
-        C=1000000          # range of entries
+        N=1000000      # number of entries
+        C=100          # range of entries
         ;;
     large)
         N=50000000     # number of entries
-        C=10000000         # range of entries
+        C=100         # range of entries
         ;;
     xlarge)
         N=500000000     # number of entries
-        C=100000000     # range of entries
+        C=100     # range of entries
         ;;
 esac
 
