@@ -5,19 +5,19 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=900000          # number of entries
-        C=10           # range of entries
+        N=5000          # number of entries
+        C=100           # range of entries
         ;;
     medium)
-        N=10000000      # number of entries
+        N=50000      # number of entries
         C=100          # range of entries
         ;;
     large)
-        N=50000000     # number of entries
+        N=500000     # number of entries
         C=100          # range of entries
         ;;
     xlarge)
-        N=500000000     # number of entries
+        N=5000000     # number of entries
         C=100          # range of entries
         ;;
 esac
@@ -27,5 +27,5 @@ echo $C
 
 # create fact files as needed
 #             | name | |entries| |       ranges        |
-gen_fact_file   A      $N    $C $C
+gen_fact_file   X      $N    $C $C
 

@@ -1,0 +1,240 @@
+//
+// Tests various properties of a tic-tac-toe gameboard
+//
+
+.decl player(x:number) input
+
+//player(1).
+///player(2).
+
+.decl cell(x:number) input
+//cell(0).
+//cell(1).
+//cell(2).
+
+.decl other(a:number,b:number) input
+//other(1,2).
+//other(2,1).
+
+
+// cross product of all possible states (not considering whether they actually can be reached)
+
+.decl all_states( 
+	a1:number, a2:number, a3:number, 
+	b1:number, b2:number, b3:number, 
+	c1:number, c2:number, c3:number, 
+	
+	p:number 
+) 
+
+all_states( a1,b1,c1,a2,b2,c2,a3,b3,c3, p ) :- 
+	cell(a1), cell(b1), cell(c1), 
+	cell(a2), cell(b2), cell(c2), 
+	cell(a3), cell(b3), cell(c3), 
+	player(p).
+
+
+
+// list of states actually reachable through valid moves
+
+.decl reachable_state( 
+	a1:number, a2:number, a3:number, 
+	b1:number, b2:number, b3:number, 
+	c1:number, c2:number, c3:number, 
+	
+	p:number 
+)
+
+.decl state_succ( 
+	aa1:number, aa2:number, aa3:number, 
+	ab1:number, ab2:number, ab3:number, 
+	ac1:number, ac2:number, ac3:number, 
+	a:number, 
+	
+	ba1:number, ba2:number, ba3:number, 
+	bb1:number, bb2:number, bb3:number, 
+	bc1:number, bc2:number, bc3:number, 
+	b:number 
+)
+
+// -- rules for all states --
+
+// initial state (X or O starts)
+reachable_state( 0, 0, 0,  0, 0, 0,  0, 0, 0,  1).
+reachable_state( 0, 0, 0,  0, 0, 0,  0, 0, 0,  2).
+
+// all reachable states
+reachable_state( a1,b1,c1,a2,b2,c2,a3,b3,c3, p ) :- state_succ( _,_,_, _,_,_, _,_,_, _,   a1,b1,c1, a2,b2,c2, a3,b3,c3, p ).
+
+
+// -- rules for successor states --
+
+// some utilitiy definitions
+
+.decl row1( a1:number, a2:number, a3:number, b1:number, b2:number, b3:number, c1:number, c2:number, c3:number,    a:number, b:number, c:number )
+.decl row2( a1:number, a2:number, a3:number, b1:number, b2:number, b3:number, c1:number, c2:number, c3:number,    a:number, b:number, c:number )
+.decl row3( a1:number, a2:number, a3:number, b1:number, b2:number, b3:number, c1:number, c2:number, c3:number,    a:number, b:number, c:number )
+
+.decl col1( a1:number, a2:number, a3:number, b1:number, b2:number, b3:number, c1:number, c2:number, c3:number,    a:number, b:number, c:number )
+.decl col2( a1:number, a2:number, a3:number, b1:number, b2:number, b3:number, c1:number, c2:number, c3:number,    a:number, b:number, c:number )
+.decl col3( a1:number, a2:number, a3:number, b1:number, b2:number, b3:number, c1:number, c2:number, c3:number,    a:number, b:number, c:number )
+
+.decl dig1( a1:number, a2:number, a3:number, b1:number, b2:number, b3:number, c1:number, c2:number, c3:number,    a:number, b:number, c:number )
+.decl dig2( a1:number, a2:number, a3:number, b1:number, b2:number, b3:number, c1:number, c2:number, c3:number,    a:number, b:number, c:number )
+
+
+row1( a1,b1,c1,a2,b2,c2,a3,b3,c3,  a1,b1,c1 ) :- all_states(a1,b1,c1,a2,b2,c2,a3,b3,c3,_).
+row2( a1,b1,c1,a2,b2,c2,a3,b3,c3,  a2,b2,c2 ) :- all_states(a1,b1,c1,a2,b2,c2,a3,b3,c3,_).
+row3( a1,b1,c1,a2,b2,c2,a3,b3,c3,  a3,b3,c3 ) :- all_states(a1,b1,c1,a2,b2,c2,a3,b3,c3,_).
+
+col1( a1,b1,c1,a2,b2,c2,a3,b3,c3,  a1,a2,a3 ) :- all_states(a1,b1,c1,a2,b2,c2,a3,b3,c3,_).
+col2( a1,b1,c1,a2,b2,c2,a3,b3,c3,  b1,b2,b3 ) :- all_states(a1,b1,c1,a2,b2,c2,a3,b3,c3,_).
+col3( a1,b1,c1,a2,b2,c2,a3,b3,c3,  c1,c2,c3 ) :- all_states(a1,b1,c1,a2,b2,c2,a3,b3,c3,_).
+
+dig1( a1,b1,c1,a2,b2,c2,a3,b3,c3,  a1,b2,c3 ) :- all_states(a1,b1,c1,a2,b2,c2,a3,b3,c3,_).
+dig2( a1,b1,c1,a2,b2,c2,a3,b3,c3,  c1,b2,a3 ) :- all_states(a1,b1,c1,a2,b2,c2,a3,b3,c3,_).
+
+
+// ------------------------------------
+
+.decl has_won( 
+	a1:number, a2:number, a3:number, 
+	b1:number, b2:number, b3:number, 
+	c1:number, c2:number, c3:number, 
+	
+	x:number 
+)
+
+has_won( a1,b1,c1,a2,b2,c2,a3,b3,c3, x ) :- row1( a1,b1,c1,a2,b2,c2,a3,b3,c3,  x,x,x ).
+has_won( a1,b1,c1,a2,b2,c2,a3,b3,c3, x ) :- row2( a1,b1,c1,a2,b2,c2,a3,b3,c3,  x,x,x ).
+has_won( a1,b1,c1,a2,b2,c2,a3,b3,c3, x ) :- row3( a1,b1,c1,a2,b2,c2,a3,b3,c3,  x,x,x ).
+
+has_won( a1,b1,c1,a2,b2,c2,a3,b3,c3, x ) :- col1( a1,b1,c1,a2,b2,c2,a3,b3,c3,  x,x,x ).
+has_won( a1,b1,c1,a2,b2,c2,a3,b3,c3, x ) :- col2( a1,b1,c1,a2,b2,c2,a3,b3,c3,  x,x,x ).
+has_won( a1,b1,c1,a2,b2,c2,a3,b3,c3, x ) :- col3( a1,b1,c1,a2,b2,c2,a3,b3,c3,  x,x,x ).
+
+has_won( a1,b1,c1,a2,b2,c2,a3,b3,c3, x ) :- dig1( a1,b1,c1,a2,b2,c2,a3,b3,c3,  x,x,x ).
+has_won( a1,b1,c1,a2,b2,c2,a3,b3,c3, x ) :- dig2( a1,b1,c1,a2,b2,c2,a3,b3,c3,  x,x,x ).
+
+
+// test whether a game is won (by eather side):
+
+.decl won( 
+	a1:number, a2:number, a3:number, 
+	b1:number, b2:number, b3:number, 
+	c1:number, c2:number, c3:number 
+)
+
+won( a1,b1,c1,a2,b2,c2,a3,b3,c3 ) :- has_won(a1,b1,c1,a2,b2,c2,a3,b3,c3,1).
+won( a1,b1,c1,a2,b2,c2,a3,b3,c3 ) :- has_won(a1,b1,c1,a2,b2,c2,a3,b3,c3,2).
+
+
+// test whether a game is a draw
+
+.decl draw( 
+	a1:number, a2:number, a3:number, 
+	b1:number, b2:number, b3:number, 
+	c1:number, c2:number, c3:number 
+)
+
+draw( a1,b1,c1,a2,b2,c2,a3,b3,c3 ) :- 
+	all_states(a1,b1,c1,a2,b2,c2,a3,b3,c3,_), 
+	!won(a1,b1,c1,a2,b2,c2,a3,b3,c3), 
+	a1 != 0, b1 != 0, c1 != 0, 
+	a2 != 0, b2 != 0, c2 != 0, 
+	a3 != 0, b3 != 0, c3 != 0.
+
+
+// test whether a game is finished
+
+.decl finished( 
+	a1:number, a2:number, a3:number, 
+	b1:number, b2:number, b3:number, 
+	c1:number, c2:number, c3:number 
+)
+
+finished( a1,b1,c1,a2,b2,c2,a3,b3,c3 ) :- won(a1,b1,c1,a2,b2,c2,a3,b3,c3).
+finished( a1,b1,c1,a2,b2,c2,a3,b3,c3 ) :- draw(a1,b1,c1,a2,b2,c2,a3,b3,c3).
+
+
+// successor relation
+
+
+.decl valid_move( 
+	aa1:number, aa2:number, aa3:number, 
+	ab1:number, ab2:number, ab3:number, 
+	ac1:number, ac2:number, ac3:number, 
+	a:number, 
+	
+	ba1:number, ba2:number, ba3:number, 
+	bb1:number, bb2:number, bb3:number, 
+	bc1:number, bc2:number, bc3:number 
+)
+
+valid_move( 0,ab1,ac1,aa2,ab2,ac2,aa3,ab3,ac3,  a,   a ,ab1,ac1,aa2,ab2,ac2,aa3,ab3,ac3 ) :- reachable_state(0,ab1,ac1,aa2,ab2,ac2,aa3,ab3,ac3, a).
+valid_move( aa1,0,ac1,aa2,ab2,ac2,aa3,ab3,ac3,  a,  aa1, a ,ac1,aa2,ab2,ac2,aa3,ab3,ac3 ) :- reachable_state(aa1,0,ac1,aa2,ab2,ac2,aa3,ab3,ac3, a).
+valid_move( aa1,ab1,0,aa2,ab2,ac2,aa3,ab3,ac3,  a,  aa1,ab1, a ,aa2,ab2,ac2,aa3,ab3,ac3 ) :- reachable_state(aa1,ab1,0,aa2,ab2,ac2,aa3,ab3,ac3, a).
+valid_move( aa1,ab1,ac1,0,ab2,ac2,aa3,ab3,ac3,  a,  aa1,ab1,ac1, a ,ab2,ac2,aa3,ab3,ac3 ) :- reachable_state(aa1,ab1,ac1,0,ab2,ac2,aa3,ab3,ac3, a).
+valid_move( aa1,ab1,ac1,aa2,0,ac2,aa3,ab3,ac3,  a,  aa1,ab1,ac1,aa2, a ,ac2,aa3,ab3,ac3 ) :- reachable_state(aa1,ab1,ac1,aa2,0,ac2,aa3,ab3,ac3, a).
+valid_move( aa1,ab1,ac1,aa2,ab2,0,aa3,ab3,ac3,  a,  aa1,ab1,ac1,aa2,ab2, a ,aa3,ab3,ac3 ) :- reachable_state(aa1,ab1,ac1,aa2,ab2,0,aa3,ab3,ac3, a).
+valid_move( aa1,ab1,ac1,aa2,ab2,ac2,0,ab3,ac3,  a,  aa1,ab1,ac1,aa2,ab2,ac2, a ,ab3,ac3 ) :- reachable_state(aa1,ab1,ac1,aa2,ab2,ac2,0,ab3,ac3, a).
+valid_move( aa1,ab1,ac1,aa2,ab2,ac2,aa3,0,ac3,  a,  aa1,ab1,ac1,aa2,ab2,ac2,aa3, a ,ac3 ) :- reachable_state(aa1,ab1,ac1,aa2,ab2,ac2,aa3,0,ac3, a).
+valid_move( aa1,ab1,ac1,aa2,ab2,ac2,aa3,ab3,0,  a,  aa1,ab1,ac1,aa2,ab2,ac2,aa3,ab3, a  ) :- reachable_state(aa1,ab1,ac1,aa2,ab2,ac2,aa3,ab3,0, a).
+
+
+//
+// Note: the finished clause is ignored due to the recursive evaluation order.
+//	already finished games are not filtered properly
+//
+state_succ(  aa1,ab1,ac1,aa2,ab2,ac2,aa3,ab3,ac3, a,  ba1,bb1,bc1,ba2,bb2,bc2,ba3,bb3,bc3, b ) 
+	:- reachable_state( aa1,ab1,ac1,aa2,ab2,ac2,aa3,ab3,ac3, a ), other(a,b), !finished( aa1,ab1,ac1,aa2,ab2,ac2,aa3,ab3,ac3 ), 
+	   valid_move( aa1,ab1,ac1,aa2,ab2,ac2,aa3,ab3,ac3, a,  ba1,bb1,bc1,ba2,bb2,bc2,ba3,bb3,bc3 ).
+
+
+// now search for states that are not finished games but in any way one of the players has already won
+
+// mapping a state to a potential winner
+.decl possible_results( 
+	a1:number, a2:number, a3:number, 
+	b1:number, b2:number, b3:number, 
+	c1:number, c2:number, c3:number, 
+	
+	p:number, 
+	
+	w:number 
+)
+
+
+possible_results( a1,b1,c1,a2,b2,c2,a3,b3,c3, p, 1) :- reachable_state(a1,b1,c1,a2,b2,c2,a3,b3,c3, p), has_won( a1,b1,c1,a2,b2,c2,a3,b3,c3, 1 ).
+possible_results( a1,b1,c1,a2,b2,c2,a3,b3,c3, p, 2) :- reachable_state(a1,b1,c1,a2,b2,c2,a3,b3,c3, p), has_won( a1,b1,c1,a2,b2,c2,a3,b3,c3, 2 ).
+
+
+possible_results( aa1,ab1,ac1,aa2,ab2,ac2,aa3,ab3,ac3, ap, x) :- state_succ( aa1,ab1,ac1,aa2,ab2,ac2,aa3,ab3,ac3, ap, ba1,bb1,bc1,ba2,bb2,bc2,ba3,bb3,bc3, bp ), 
+							possible_results( ba1,bb1,bc1,ba2,bb2,bc2,ba3,bb3,bc3, bp, x).
+
+
+// search for game states where only one player can win any more but not within a single step
+
+.decl decided_games( 
+	a1:number, a2:number, a3:number, 
+	b1:number, b2:number, b3:number, 
+	c1:number, c2:number, c3:number, 
+	
+	p:number, 
+	
+	w:number 
+) output
+
+decided_games( a1,b1,c1,a2,b2,c2,a3,b3,c3, 2, 1 ) :- 
+	!won(a1,b1,c1,a2,b2,c2,a3,b3,c3), 
+	possible_results( a1,b1,c1,a2,b2,c2,a3,b3,c3, 2, 1 ), 
+	!possible_results( a1,b1,c1,a2,b2,c2,a3,b3,c3, 2, 2 ).
+
+
+decided_games( a1,b1,c1,a2,b2,c2,a3,b3,c3, 1, 2 ) :- 
+	!won(a1,b1,c1,a2,b2,c2,a3,b3,c3), 
+	possible_results( a1,b1,c1,a2,b2,c2,a3,b3,c3, 1, 2 ), 
+	!possible_results( a1,b1,c1,a2,b2,c2,a3,b3,c3, 1, 1 ).
+
+
+

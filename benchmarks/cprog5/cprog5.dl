@@ -9,7 +9,7 @@
 .decl med(x:number) input
 .decl high(x:number) input
 
-.decl loop(i:number, x:number, y:number, z:number)
+.decl loop(i:number, x:number, y:number, z:number) output
 .decl R() output
 
 loop(0, 0, 0, 0).
@@ -18,11 +18,13 @@ loop(1, h, y, z) :- loop(0, _, y, z),high(h).
 loop(2, x, y, m) :- loop(1, x, y, _),med(m).
 loop(3, x, l, z) :- loop(0, _, _, z), loop(1, x, _, _),low(l).
 
-loop(7, x, y, z)  :- loop(3, x, y, z), x <= z.
-loop(4, x, y, z)  :- loop(3, x, y, z), x > z.
+loop(7, x, y, z)  :- loop(3, x, y, z), x <= y.
+
+loop(4, x, 0, z)  :- loop(3, x, y, z), x > y.
+
 loop(4, x, y+1, z)  :- loop(4, x, y, z), z > y.
-loop(5, x, y, z)  :- loop(4, x, y, z), z <= y.
-loop(3, x, y, z+1)  :- loop(5, x, y, z).
+
+loop(3, x, y, z+1)  :- loop(4, x, y, z), z <= y.
 
 R() :- loop(7, x, _, z),  x = z.
 

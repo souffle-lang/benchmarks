@@ -1,23 +1,17 @@
-// x  = 10;
-// y = 11;
-// if(x - y> 0) 
-//    z = z
-// else
-//    z = z * -1
-//
-//   assert(z >= 0)
-//
-
 .decl low(x:number) input
 .decl high(x:number) input
 
 .decl loop(i:number, x:number, y:number, z:number)
 .decl R() output
 
-loop(0, 0, l, 0) :- low(l).
+loop(0, 0, l, 1) :- low(l).
 loop(1, h, y, z) :- loop(0, _, y, z), high(h).
-loop(2, x, y, z) :- loop(1, x, _, _), loop(0, _, y, z), x - z > 0.
-loop(3, x, y, z*-1) :- loop(1, x, y, z), x - z <= 0.
+loop(2, x, y, z*2) :- loop(1, x, _, _), loop(0, _, y, z), x - z > 0.
+loop(3, x, y, z*-2) :- loop(1, x, y, z), x - z <= 0.
+
 loop(4, x, y, z) :- loop(2, x, y, z).
 loop(4, x, y, z) :- loop(3, x, y, z).
+
+loop(4, x, y+1, z) :- loop(4, x, y, z), y < x.
+
 R() :- loop(4, _, _, z), z >= 0.

@@ -16,11 +16,14 @@
 loop(0, 0, 0, 0).
 loop(1, x, l, z) :- loop(0, x, _, z),low(l).
 loop(2, x, y, m) :- loop(1, x, y, _),med(m).
-loop(3, h, y, z) :- loop(2, _, y, _), loop(1, _, _, z),high(h).
-loop(4, x, y, z) :- loop(2, _, y, z), loop(3, x, y, z), x > z.
-loop(4, x, y, z+1) :- loop(4, x, y, z), x > z.
-loop(5, x, y, z) :- loop(4, x, y, z), x <= z.
-loop(5, x, y+1, z) :- loop(5, x, y, z) , z > y.
+loop(3, h, y, z) :- loop(1, _, y, _), loop(2, _, _, z),high(h).
+
+loop(3, x, y, z+1) :- loop(3, x, y, _), loop(3, _, _, z), z < x.
+
+loop(5, x, y, z) :- loop(3, x, y, z), x <= z.
+
+loop(5, x, y+1, z) :- loop(5, x, y, z) , y < z.
+
 loop(6, x, y, z) :- loop(5, x, y, z), z <= y.
 
 Res() :- loop(6, x, y ,z), x = y, y = z.

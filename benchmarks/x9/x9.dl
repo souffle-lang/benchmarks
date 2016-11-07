@@ -1,0 +1,11 @@
+.decl X(node1:number, node2:number) input
+.decl Y(node1:number, node2:number) output
+
+Y(a,b) :- X(a,b).
+Y(a,c) :- Y(a,b), Y(b,c).
+
+X(1, 6).
+X(2, 3).
+X(1, 5).
+X(3, 4).
+

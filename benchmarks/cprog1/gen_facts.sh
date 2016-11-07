@@ -9,13 +9,13 @@ case $SIZE in
         ;;
     medium)
         LOW=0          # number of entries
-        MED=1000           # range of entries
-        HIGH=2000           # range of entries
+        MED=700           # range of entries
+        HIGH=1400           # range of entries
         ;;
     large)
         LOW=0          # number of entries
-        MED=2500           # range of entries
-        HIGH=5000           # range of entries
+        MED=1250           # range of entries
+        HIGH=2500           # range of entries
         ;;
     xlarge)
         LOW=0          # number of entries

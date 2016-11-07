@@ -6,15 +6,15 @@
 
 case $SIZE in
     small)
-        N=500          # number of entries
+        N=14000          # number of entries
         C=10           # range of entries
         ;;
     medium)
-        N=5000000      # number of entries
+        N=400000      # number of entries
         C=100          # range of entries
         ;;
     large)
-        N=50000000     # number of entries
+        N=800000     # number of entries
         C=100          # range of entries
         ;;
     xlarge)
