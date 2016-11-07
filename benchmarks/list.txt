@@ -41,29 +41,29 @@ lubm
 
 DONE
 ==========================
-trans	4
-tc	4
-metro	1
-family	4
-tak	7
-po1	26 
-po3	22 
-po2	22 
-components	18 
-po5	16 
-nfsa2fsa	15 
-po4	12 
-access2	12 
-access3	12 
+trans	4 PORT
+tc	4 PORT
+metro	1 ??? == cant get it to go over 0s
+family	4 PORT
+tak	7 PORT
+po1	26 PORT
+po3	22 PORT
+po2	22 PORT
+po5	16 PORT
+po4	12 PORT
+access2	12 PORT
+access3	12 PORT
+cprog3	3 PORT
+cprog4	3 PORT
+cprog5	3 PORT
+access1	6 PORT
+cprog2	6 PORT
+cprog1	4 PORT
+access-policy	8 PORT
 turing1	9 
-cprog3	3 
-cprog4	3 
-cprog5	3 
+nfsa2fsa	15 
 pointsto 4 
-access1	6 
-cprog2	6 
-cprog1	4 
-access-policy	8
+components	18 
 ranpo	8
 topological_ordering	8
 sequences	8

@@ -6,9 +6,9 @@
 case $SIZE in
     small)
         N1=1
-	SZ=50
-        C=100	
-	N=500
+	SZ=500
+        C=1000
+	N=50000
         ;;
     medium)
         N1=1
