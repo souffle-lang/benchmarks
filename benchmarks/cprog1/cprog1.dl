@@ -4,7 +4,7 @@
 //3: assert(y = high);
 
 .decl low(x:number) input
-.decl mid(x:number) input
+.decl med(x:number) input
 .decl high(x:number) input
 
 .decl loop(line: number, x:number, y:number, z:number)

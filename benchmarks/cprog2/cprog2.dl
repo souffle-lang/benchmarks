@@ -7,7 +7,7 @@
 //assert(x = y = z)
 
 .decl low(x:number) input
-.decl mid(x:number) input
+.decl med(x:number) input
 .decl high(x:number) input
 
 .decl loop(i:number, x:number, y:number, z:number) output
