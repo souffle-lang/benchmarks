@@ -5,25 +5,25 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=500          # number of entries
-        C=10           # range of entries
+        N=35000
         ;;
     medium)
-        N=5000000      # number of entries
-        C=100          # range of entries
+        N=1000000
         ;;
     large)
-        N=50000000     # number of entries
-        C=100          # range of entries
+        N=3000000
         ;;
     xlarge)
-        N=500000000     # number of entries
-        C=100          # range of entries
+        N=50000000
+        ;;
+    custom)
+        N=${N:=1000}
+        echo "Custom problem size $N"     
         ;;
 esac
 
-echo $N
-echo $C
+N=$N             
+C=100  
 
 # create fact files as needed
 #             | name | |entries| |       ranges        |

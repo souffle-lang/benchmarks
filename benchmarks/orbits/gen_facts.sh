@@ -5,19 +5,22 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=400         # number of objects
+        N=400
         ;;
     medium)
-        N=800         # number of objects
+        N=800
         ;;
     large)
-        N=4000        # number of objects
+        N=4000
         ;;
     xlarge)
-        N=10000       # number of objects
+        N=10000
+        ;;
+    custom)
+        N=${N:=400}
+        echo "Custom problem size $N"     
         ;;
 esac
-
 
 
 # create fact files as needed

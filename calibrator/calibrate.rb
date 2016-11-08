@@ -11,13 +11,13 @@ benchmark_dir = "../benchmarks"
 working_dir = "./evaluation"
 
 # short
-#@timeout=1.0
+@timeout=1.0
 
 # medium
 #@timeout=60
 
 # large
-@timeout=60
+#@timeout=600
 
 @debug = false
 
@@ -131,8 +131,10 @@ dl_files.each do |dlFile|
 
     # start growing problem size until exceeding the time limit
     n = 1
-    while evaluate(fact_generator,exec,n) >= 0 do
+    t = evaluate(fact_generator,exec,n)
+    while t >= 0 && t < (@timeout*1000) do
         n = n * 2
+        t = evaluate(fact_generator,exec,n)
     end
 
     # now narrow in using binary search

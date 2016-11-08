@@ -3,30 +3,28 @@
 
 case $SIZE in
     small)
-        LOW1=-10          # number of entries
-        HIGH1=10           # range of entries
-        LOW2=0          # number of entries
-        HIGH2=10           # range of entries
+        N=35000
         ;;
     medium)
-        LOW1=-20          # number of entries
-        HIGH1=20           # range of entries
-        LOW2=0          # number of entries
-        HIGH2=20           # range of entries        
+        N=1000000
         ;;
     large)
-        LOW1=-30          # number of entries
-        HIGH1=30           # range of entries
-        LOW2=0          # number of entries
-        HIGH2=30           # range of entries        
+        N=3000000
         ;;
     xlarge)
-        LOW1=-10000          # number of entries
-        HIGH1=10000           # range of entries
-        LOW2=0          # number of entries
-        HIGH2=10000           # range of entries     
+        N=50000000
+        ;;
+    custom)
+        N=${N:=1000}
+        echo "Custom problem size $N"     
         ;;
 esac
+
+
+LOW1=-$N         # number of entries
+HIGH1=$N         # range of entries
+LOW2=0           # number of entries
+HIGH2=$N         # range of entries
 
 
 # just seed fact files

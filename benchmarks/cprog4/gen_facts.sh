@@ -1,28 +1,30 @@
 #!/bin/bash
 . `dirname $BASH_SOURCE[0]`/../utils.sh
 
+# destinguish benchmark sizes
 case $SIZE in
     small)
-        LOW=0          # number of entries
-        MED=500           # range of entries
-        HIGH=1000           # range of entries
+        N=500
         ;;
     medium)
-        LOW=0          # number of entries
-        MED=3000           # range of entries
-        HIGH=5000           # range of entries
+        N=3000
         ;;
     large)
-        LOW=0          # number of entries
-        MED=7500           # range of entries
-        HIGH=15000           # range of entries
+        N=7500
         ;;
     xlarge)
-        LOW=0          # number of entries
-        MED=5000           # range of entries
-        HIGH=10000           # range of entries
+        N=10000
+        ;;
+    custom)
+        N=${N:=1000}
+        echo "Custom problem size $N"     
         ;;
 esac
+
+LOW=0
+MED=$N
+HIGH=`expr $N \* 2`
+
 
 # just seed fact files
 mkdir -p facts

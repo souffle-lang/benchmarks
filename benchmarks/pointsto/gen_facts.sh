@@ -4,30 +4,33 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=5000          # number of entries
-        C=10           # range of entries
+        N=1548
         ;;
     medium)
-        N=500000      # number of entries
-        C=100          # range of entries
+        N=2000 
         ;;
     large)
-        N=5000000     # number of entries
-        C=100          # range of entries
+        N=3000   
         ;;
     xlarge)
-        N=50000000     # number of entries
-        C=100          # range of entries
+        N=4000
+        ;;
+    custom)
+        N=${N:=1000}
+        echo "Custom problem size $N"     
         ;;
 esac
 
-echo $N
-echo $C
+N=$N                        # number of instructions of each type
+O=`expr $N / 10`            # number of objects 
+V=`expr $N / 4`             # number of variables
+F=10                        # number of fields
+
 
 # create fact files as needed
 #             | name | |entries| |       ranges        |
-gen_fact_file   AssignAlloc  $N    $C $C
-gen_fact_file   PrimitiveAssign  $N  $C $C
-gen_fact_file      Load      $N    $C $C $C
-gen_fact_file      Store     $N    $C $C $C
+gen_fact_file   AssignAlloc  $N    $V $O
+gen_fact_file   PrimitiveAssign  $N  $V $V
+gen_fact_file      Load      $N    $V $V $F
+gen_fact_file      Store     $N    $V $V $F
 

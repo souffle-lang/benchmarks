@@ -4,22 +4,26 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=200          # number of entries
-        C=50           # range of entries
+        N=35000
         ;;
     medium)
-        N=2000      # number of entries
-        C=500          # range of entries
+        N=1000000
         ;;
     large)
-        N=20000     # number of entries
-        C=500          # range of entries
+        N=3000000
         ;;
     xlarge)
-        N=200000     # number of entries
-        C=500          # range of entries
+        N=50000000
+        ;;
+    custom)
+        N=${N:=1000}
+        echo "Custom problem size $N"     
         ;;
 esac
+
+C=$N                    # number of stations
+N=`expr $C \* 4`        # 4 connections on average
+
 
 # create fact files as needed
 #             | name | |entries| |range_start|  |range_end|

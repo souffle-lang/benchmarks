@@ -3,26 +3,26 @@
 
 case $SIZE in
     small)
-        LOW=0          # number of entries
-        MED=200           # range of entries
-        HIGH=1500           # range of entries
+        N=35000
         ;;
     medium)
-        LOW=0          # number of entries
-        MED=500           # range of entries
-        HIGH=4000           # range of entries
+        N=1000000
         ;;
     large)
-        LOW=0          # number of entries
-        MED=2500           # range of entries
-        HIGH=25000           # range of entries
+        N=3000000
         ;;
     xlarge)
-        LOW=0          # number of entries
-        MED=5000           # range of entries
-        HIGH=10000           # range of entries
+        N=50000000
+        ;;
+    custom)
+        N=${N:=1000}
+        echo "Custom problem size $N"     
         ;;
 esac
+
+LOW=0
+MED=$N
+HIGH=`expr $N \* 10`
 
 # just seed fact files
 mkdir -p facts

@@ -14,7 +14,7 @@
 // define finit number range (120 - enough space for all words up to lenght 4)
 .decl n(x:number) 
 n(0).
-n(x+1) :- n(x), x < 120.
+n(x+1) :- n(x), num_letters(n), x < n.
 
 // define successor function
 .decl s(x:number,y:number) 
@@ -51,14 +51,12 @@ div(x,y,r) :- mul(r,y,a), add(a,z,x), 0<=z, z<y.
 mod(x,y,r) :- mul(y,_,z), add(z,r,x), 0<=r, r<y.
 
 
-// index letters
-.decl idx(i:number,a:number) input
 
 
 //////////////////// TRIE ////////////////////////
 
 .decl trie_letter(i:number,a:number) 
-trie_letter(i,a) :- s(x,i), num_letters(n), mod(x,n,r), idx(r,a).
+trie_letter(i,r) :- s(x,i), num_letters(n), mod(x,n,r).
 
 .decl trie_level_end(l:number,i:number)
 trie_level_end(0,0).

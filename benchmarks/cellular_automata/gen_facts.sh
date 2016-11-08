@@ -5,34 +5,29 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N1=1
-	SZ=500
-        C=1000
-	N=50000
+        N=35000
         ;;
     medium)
-        N1=1
-	SZ=500
-        C=100	
-	N=5000
-	;;
+        N=1000000
+        ;;
     large)
-        N1=1
-	SZ=5000
-        C=100	
-	N=50000
-	;;
+        N=3000000
+        ;;
     xlarge)
-        N1=1
-	SZ=5000
-        C=100	
-	N=50000
+        N=50000000
+        ;;
+    custom)
+        N=${N:=1000}
+        echo "Custom problem size $N"     
+        ;;
 esac
 
-echo $N1
-echo $SZ
-echo $C
-echo $N
+
+N1=1
+SZ=$N
+C=100
+N=`expr $N \* 10`
+
 
 # create fact files as needed
 #             | name | |entries| |       ranges        |
