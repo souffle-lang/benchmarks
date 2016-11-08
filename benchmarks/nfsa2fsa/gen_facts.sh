@@ -4,36 +4,26 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        S=500         
-        L=10           
-        T=30
+	N=10
         ;;
     medium)
-        S=5000
-        L=100           
-        T=300
+	N=13
         ;;
     large)
-        S=50000
-        L=100
-        T=300
+	N=14
         ;;
     xlarge)
-        S=500000
-        L=100
-        T=300
+	N=15
         ;;
     custom)
         N=${N:=10}
-        echo "Custom problem size $N"
-        S=$N                        # number of states
-        L=`expr $N / 10`
-        T=`expr $S \* $L`
+        echo "Custom problem size $N"     
         ;;
 esac
 
-# small size: N=10
-# medium: N=13
+S=$N                        # number of states
+L=`expr $N / 10`
+T=`expr $S \* $L`
 
 
 # create fact files as needed

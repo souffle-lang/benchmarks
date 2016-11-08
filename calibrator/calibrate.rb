@@ -10,7 +10,13 @@ souffle_exec  = "#{souffle_root}/build_release/src/souffle"
 benchmark_dir = "../benchmarks"
 working_dir = "./evaluation"
 
-# @timeout=1.0
+# short
+#@timeout=1.0
+
+# medium
+#@timeout=60
+
+# large
 @timeout=60
 
 @debug = false
@@ -120,7 +126,7 @@ dl_files.each do |dlFile|
     # compile test case
     puts "Compiling benchmark " + name + " (#{i}/#{num_cases}).."
     ENV["SOUFFLE_USE_NAIVE_INDEX"] = "1"
-	# `#{souffle_exec} #{dlFile} -F #{facts} -o #{exec}`
+    `#{souffle_exec} #{dlFile} -F #{facts} -o #{exec}`
     ENV.delete("SOUFFLE_USE_NAIVE_INDEX");
 
     # start growing problem size until exceeding the time limit
