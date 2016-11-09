@@ -5,7 +5,7 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=4108
+        N=168
         ;;
     medium)
         N=1000000
@@ -23,16 +23,18 @@ case $SIZE in
 esac
 
 
-N1=1
-SZ=$N
-C=100
-N=`expr $N \* 10`
+N=$N        # number of elements in input array
+T=$N        # number of time steps to be processed
 
 
 # create fact files as needed
-#             | name | |entries| |       ranges        |
-gen_fact_file   parameters      $N1    $SZ
-gen_fact_file   values          $SZ    $SZ $C
-gen_fact_file   transition      $N     $C $C $C $C
-gen_fact_file   terminate       $N     $C
+mkdir -p facts
+echo $N > facts/parameters.facts
+echo $T > facts/terminate.facts
+
+B=`expr $N - 1`
+echo -e "0\t1" > facts/values.facts
+for i in `seq 1 $B` ; do
+    echo -e "$i\t1" >> facts/values.facts
+done
 
