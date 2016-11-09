@@ -8,13 +8,13 @@ case $SIZE in
         N=652
         ;;
     medium)
-        N=1000000
+        N=4602
         ;;
     large)
-        N=3000000
+        N=3000
         ;;
     xlarge)
-        N=50000000
+        N=5000
         ;;
     custom)
         N=${N:=1000}

@@ -8,16 +8,16 @@ case $SIZE in
         N=115
         ;;
     medium)
-        N=1000000
+        N=3884
         ;;
     large)
-        N=3000000
+        N=3000
         ;;
     xlarge)
-        N=50000000
+        N=5000
         ;;
     custom)
-        N=${N:=1000}
+        N=${N:=10}
         echo "Custom problem size $N"     
         ;;
 esac
