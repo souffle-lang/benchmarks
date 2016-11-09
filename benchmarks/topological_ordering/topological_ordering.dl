@@ -4,27 +4,26 @@
 
 // Graph
 
-// Vertices
-.decl vertices(v:number) input
-.decl vertex(v:number) output
-vertex(v) :- vertices(v).
-
 // Edges
-.decl edges(v1:number, v2:number) input
-.decl edge(v1:number, v2:number) output
-edge(v1, v2) :- vertex(v1), vertex(v2), edges(v1, v2).
+.decl edge(v1:number, v2:number) input
+
+// Vertices
+.decl vertex(v:number) 
+vertex(v) :- edge(v,_).
+vertex(v) :- edge(_,v).
+
 
 // Tests if vertex v1 proceeds vertex v2 in the ordering.
-.decl is_before(v1:number, v2:number) output
+.decl is_before(v1:number, v2:number) printsize
 
 // Tests if vertex v1 succeeds vertex v2 in the ordering.
-.decl is_after(v1:number, v2:number) output
+.decl is_after(v1:number, v2:number) printsize
 
 // Gives the possible indices of the vertices in the ordering.
-.decl indices(v:number, i:number) output
+.decl indices(v:number, i:number) printsize
 
 // Gives the exact index of the vertex in the ordering.
-.decl index(v:number, i:number) output
+.decl index(v:number, i:number) printsize
 
 // Vertex x is before vertex y if the graph has an edge from x to y.
 is_before(x, y) :-

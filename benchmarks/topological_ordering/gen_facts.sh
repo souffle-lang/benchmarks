@@ -5,7 +5,7 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=3112244
+        N=389
         ;;
     medium)
         N=1000000
@@ -22,11 +22,18 @@ case $SIZE in
         ;;
 esac
 
-N=$N             
-C=100  
+N=$N        # number of elements in tree
+
 
 # create fact files as needed
-#             | name | |entries| |       ranges        |
-gen_fact_file   vertices      $N    $C
-gen_fact_file      edges        $N    $C $C
+mkdir -p facts
+
+echo -e "0\t1" > facts/edge.facts
+for i in `seq 1 $N` ; do
+    j=`expr 2 \* $i`
+    echo -e "$i\t$j" >> facts/edge.facts
+    j=`expr 1 + $j`
+    echo -e "$i\t$j" >> facts/edge.facts
+done
+
 

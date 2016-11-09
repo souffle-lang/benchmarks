@@ -5,7 +5,7 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=2373598
+        N=47
         ;;
     medium)
         N=1000000
@@ -22,11 +22,11 @@ case $SIZE in
         ;;
 esac
 
-N=$N             
-C=100  
+N=`expr $N \* 1000`
+C=`expr $N \* 500`
 
 # create fact files as needed
 #             | name | |entries| |       ranges        |
 gen_fact_file   father      $N    $C $C
-gen_fact_file      mother        $N    $C $C
+gen_fact_file   mother      $N    $C $C
 

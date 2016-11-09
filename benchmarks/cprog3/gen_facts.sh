@@ -4,7 +4,7 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=1217741
+        N=1188
         ;;
     medium)
         N=1000000
@@ -21,6 +21,7 @@ case $SIZE in
         ;;
 esac
  
+N=`expr $N \* 1000`
 
 # just seed fact files
 mkdir -p facts

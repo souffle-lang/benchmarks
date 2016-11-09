@@ -1,9 +1,13 @@
-.decl link(node1:number, node2:number, node3:number) input
+.decl link(node1:number, node2:number) input
 
-.decl St_Reachable(node1:number, node2:number) output
-.decl Li_Reachable(node1:number, node2:number) output
+.decl start(node1:number) input
+.decl reaching(node1:number) printsize
+.decl reachable(node1:number) printsize
 
-St_Reachable(x, y) :- link(_,x,y).
-St_Reachable(x, y) :- St_Reachable(x, z), link(_, z, y).
-Li_Reachable(x, u) :- St_Reachable(x, z), link(u, z, _).
+reaching(X) :- start(X).
+reaching(Y) :- reaching(X), link(Y,X).
+
+reachable(X) :- start(X).
+reachable(Y) :- reachable(X), link(X,Y).
+
 

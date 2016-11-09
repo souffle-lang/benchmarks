@@ -1,11 +1,10 @@
-
 # include general utilities
 . `dirname $BASH_SOURCE[0]`/../utils.sh
 
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=5175263
+        N=182
         ;;
     medium)
         N=1000000
@@ -22,10 +21,10 @@ case $SIZE in
         ;;
 esac
 
-N=$N             
-C=100  
+N=`expr $N \* 1000`
+E=`expr $N \* 10`
 
 # create fact files as needed
 #             | name | |entries| |       ranges        |
-gen_fact_file   X      $N    $C $C
+gen_fact_file      X         $N         $E   $E
 

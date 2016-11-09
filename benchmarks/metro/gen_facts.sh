@@ -5,7 +5,7 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=372740
+        N=127
         ;;
     medium)
         N=1000000
@@ -22,10 +22,13 @@ case $SIZE in
         ;;
 esac
 
-N=$N             
-C=100  
+S=$N
+N=`expr $N \* 1000`   # numer of stations
+C=`expr $N \* 3`      # 3 connections average per station
 
 # create fact files as needed
 #             | name | |entries| |       ranges        |
-gen_fact_file   link      $N    $C $C $C
+gen_fact_file   link      $C             $N $N 
+gen_fact_file   start     $S             $N
+
 
