@@ -12,7 +12,15 @@ bddbddb_exec = "java -jar ~/libs/bddbddb-latest/bddbddb-full.jar"
 benchmark_dir = "../benchmarks"
 working_dir = "./evaluation"
 
-timeout="60s"
+timeout="10s"
+
+if ENV["SIZE"] == "small" then
+    timeout="3s"
+end
+
+if ENV["SIZE"] == "medium" then
+    timeout="180s"
+end
 
 @debug = false
 

@@ -14,10 +14,10 @@ working_dir = "./evaluation"
 @timeout=1.0
 
 # medium
-#@timeout=60
+@timeout=60.0
 
 # large
-#@timeout=600
+#@timeout=600.0
 
 @debug = false
 
@@ -150,16 +150,16 @@ dl_files.each do |dlFile|
     low_t = old_t
     hig_t = (t < 0) ? 3*target_time : t
 
-    
-
-    # now narrow in using binary search
-#    l = n / 2
-#    h = n
 
     while l != h do
         m = (l + (((target_time - low_t)*(h-l)) / (hig_t - low_t))).to_i;
-        
-#        m = (l + h) / 2
+
+        if (h - l) < (m / 100) then
+            h = m;
+            l = m;
+            break;
+        end
+
         t = evaluate(fact_generator,exec,m)
 
         if (t-target_time).abs < 0.01 * target_time 
