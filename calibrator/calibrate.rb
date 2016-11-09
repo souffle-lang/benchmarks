@@ -129,27 +129,53 @@ dl_files.each do |dlFile|
     `#{souffle_exec} #{dlFile} -F #{facts} -o #{exec}`
     ENV.delete("SOUFFLE_USE_NAIVE_INDEX");
 
+    # the time we seek to be achived
+    target_time = (@timeout * 1000)
+
     # start growing problem size until exceeding the time limit
     n = 1
+    old_t = 0
     t = evaluate(fact_generator,exec,n)
-    while t >= 0 && t < (@timeout*1000) do
+    while t >= 0 && t < target_time do
         n = n * 2
+        old_t = t
         t = evaluate(fact_generator,exec,n)
     end
 
-    # now narrow in using binary search
+
+    # now narrow in using interpolation search
     l = n / 2
     h = n
 
+    low_t = old_t
+    hig_t = (t < 0) ? 3*target_time : t
+
+    
+
+    # now narrow in using binary search
+#    l = n / 2
+#    h = n
+
     while l != h do
-        m = (l + h) / 2
+        m = (l + (((target_time - low_t)*(h-l)) / (hig_t - low_t))).to_i;
+        
+#        m = (l + h) / 2
         t = evaluate(fact_generator,exec,m)
-        if t < 0 || t > (@timeout * 1000)
+
+        if (t-target_time).abs < 0.01 * target_time 
+            # we can stop here
             h = m
-        else
-            h = m if l == m
             l = m
-        end
+        else 
+		    if t < 0 || t > target_time
+		        h = m
+                hig_t = t
+		    else
+		        h = m if l == m
+		        l = m
+                low_t = t
+		    end
+	    end
     end
 
     # take the result
