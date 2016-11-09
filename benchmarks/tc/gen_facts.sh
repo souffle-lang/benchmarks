@@ -5,7 +5,7 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=5112972
+        N=390
         ;;
     medium)
         N=1000000
@@ -22,10 +22,10 @@ case $SIZE in
         ;;
 esac
 
-N=$N             
-C=100  
+C=$N
+E=`expr $C \* 10`    # each node has on average 10 neighbors
 
 # create fact files as needed
 #             | name | |entries| |       ranges        |
-gen_fact_file   base      $N    $C $C
+gen_fact_file   base      $E    $C $C
 

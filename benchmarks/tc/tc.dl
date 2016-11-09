@@ -1,10 +1,10 @@
 //// Reproduced from [FD92]
 //// Adopted from DES
 
-.decl tcl  (node1:number, node2:number) output
-.decl tcr  (node1:number, node2:number) output
+.decl tcl  (node1:number, node2:number) printsize
+.decl tcr  (node1:number, node2:number) printsize
 .decl base (node1:number, node2:number) input
-.decl tc (node1:number, node2:number) output
+.decl tc (node1:number, node2:number) printsize
 
 // Left-Recursive Transitive Closure
 tcl(X, Y) :- base(X,Y).
