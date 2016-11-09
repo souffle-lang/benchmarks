@@ -7,7 +7,7 @@ case $SIZE in
         N=163840
         ;;
     medium)
-        N=1000000
+        N=4282800
         ;;
     large)
         N=3000000
