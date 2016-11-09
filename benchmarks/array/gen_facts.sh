@@ -1,10 +1,11 @@
-#!/bin/bash
+
+# include general utilities
 . `dirname $BASH_SOURCE[0]`/../utils.sh
 
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=169
+        N=4108
         ;;
     medium)
         N=1000000
@@ -21,13 +22,14 @@ case $SIZE in
         ;;
 esac
 
-LOW=0
-MED=$N
-HIGH=`expr $N \* 2`
 
-# just seed fact files
-mkdir -p facts
-echo $LOW > facts/low.facts
-echo $MED > facts/med.facts
-echo $HIGH > facts/high.facts
+N1=1
+SZ=$N
+C=100
+
+
+# create fact files as needed
+#             | name | |entries| |       ranges        |
+gen_fact_file   parameters      $N1    $SZ
+gen_fact_file   values          $SZ    $SZ $C
 

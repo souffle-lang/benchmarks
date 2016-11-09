@@ -4,7 +4,7 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=5
+        N=0
         ;;
     medium)
         N=50

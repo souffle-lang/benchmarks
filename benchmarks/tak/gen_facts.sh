@@ -3,7 +3,7 @@
 
 case $SIZE in
     small)
-        N=35000
+        N=9
         ;;
     medium)
         N=1000000

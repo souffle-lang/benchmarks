@@ -5,7 +5,7 @@
 # destinguish benchmark sizes
 case $SIZE in
     small)
-        N=35000
+        N=1110
         ;;
     medium)
         N=1000000
