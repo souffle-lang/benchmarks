@@ -9,10 +9,10 @@ case $SIZE in
         N=21
         ;;
     large)
-        N=3000000
+        N=30
         ;;
     xlarge)
-        N=50000000
+        N=40
         ;;
     custom)
         N=${N:=1000}
