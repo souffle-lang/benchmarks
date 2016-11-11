@@ -10,7 +10,7 @@ case $SIZE in
         N=2620
         ;;
     large)
-        N=7500
+        N=6175
         ;;
     xlarge)
         N=10000
