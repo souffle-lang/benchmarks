@@ -22,7 +22,11 @@ if ENV["SIZE"] == "medium" then
     timeout="180s"
 end
 
-@debug = true
+if ENV["SIZE"] == "large" then
+    timeout="1800s"
+end
+
+@debug = false
 
 # -------------------------------------------------------------
 
@@ -173,6 +177,7 @@ dl_files.each do |dlFile|
 
     # cleanup
     `rm -r #{facts}`
+    `rm #{name}.dl`
 
 	print_result(data)
 

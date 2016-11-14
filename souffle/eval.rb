@@ -20,6 +20,10 @@ if ENV["SIZE"] == "medium" then
     timeout="180s"
 end
 
+if ENV["SIZE"] == "large" then
+    timeout="1800s"
+end
+
 @debug = false
 
 # -------------------------------------------------------------
