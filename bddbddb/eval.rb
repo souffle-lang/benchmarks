@@ -15,14 +15,18 @@ working_dir = "./evaluation"
 timeout="10s"
 
 if ENV["SIZE"] == "small" then
-    timeout="3s"
+    timeout="30s"
 end
 
 if ENV["SIZE"] == "medium" then
     timeout="180s"
 end
 
-@debug = false
+if ENV["SIZE"] == "large" then
+    timeout="1800s"
+end
+
+@debug = true
 
 # -------------------------------------------------------------
 
@@ -142,8 +146,8 @@ dl_files.each do |dlFile|
     if File.exists?(facts) then
         Find.find(facts) do |path|
             next unless path =~ /.*\.facts$/ 
-            name = File.basename(path,".facts")
-            File.rename("#{path}","#{name}.tuples")
+            fact_file_name = File.basename(path,".facts")
+            File.rename("#{path}","#{fact_file_name}.tuples")
         end
     end
 
