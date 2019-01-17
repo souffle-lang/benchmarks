@@ -1,0 +1,1 @@
+To use this, you need to change the variables for `root` and `benchdir` to suit your environment. All it does is just run the benchmarking tool for the sample programs `topological_ordering`, `transitive closure`, and `pointsto`. You can give the flag `--pretty` to the command in the for loop if you feel confused and bewildered by the output. 

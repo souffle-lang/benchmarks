@@ -4,6 +4,7 @@ SOUFFLE=""
 FACTS=""
 PROGRAM=""
 PRETTY=false
+OPTIONS=""
 
 ######################################
 ## Uses the usual output
@@ -22,6 +23,7 @@ pretty() {
 
   while read name d2creal d2cuser d2csys d2cmem c2oreal c2ouser c2osys c2omem runreal runuser runsys runmem
     do
+      echo -e "${RED}=====$name==============================="
       echo -e "${PURPLE}\tDatalog -> C++"
       echo -e "${NOCOLOUR}\t\tReal:\t$d2creal s\n\t\tUser:\t$d2cuser s\n\t\tSystem:\t$d2csys s\n\t\tMemory usage:\t$d2cmem kB"
       echo -e "${PURPLE}\tC++ -> .o"
@@ -37,8 +39,12 @@ pretty() {
 ## Does everything, 
 ## outputs a csv to stdout
 simple() {
-  local temp_file=$(mktemp /tmp/tmp.XXXXXX)
-  local output=$(mktemp /tmp/tmp.XXXXXX)
+  local temp_file=$(mktemp XXXXXX)
+  local output=$(mktemp XXXXX)
+  # put necessary permissions
+  chmod +x $output
+  chmod +x $SOUFFLE-compile
+
   printf "$PROGRAM,"
   
   { /usr/bin/time -f "%e,%U,%S,%M" \
@@ -46,8 +52,7 @@ simple() {
   $SOUFFLE $PROGRAM \
   -F $FACTS \
   -w \
-  --output-dir=/tmp/tmp.blah \
-  -g $output.cpp; } &> $temp_file
+  -g $output.cpp $OPTIONS; } &> $temp_file
   ## get rid of the bloody trailing newline that time causes
   perl -pi -e 'chomp if eof' $temp_file
 
@@ -61,10 +66,10 @@ simple() {
   { /usr/bin/time \
   -f ",%e,%U,%S,%M" \
   timeout 15m \
-  $output > /dev/null; } &>> $temp_file
+  ./$output > /dev/null; } &>> $temp_file
 
   cat $temp_file
- 
+  rm $temp_file $output $output.cpp 
 }
 
 ## The main function, dealing with flags and

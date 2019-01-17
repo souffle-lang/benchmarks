@@ -24,11 +24,11 @@ pretty() {
 
 
 simple() {
-  local output=$(mktemp /tmp/tmp.XXXXX)
+  local output=$(mktemp XXXX)
 # 1. compile the .dl file
-  CPPFLATS="-pg" $SOUFFLE $DATALOG_FILE -F $FACTS -w -o $output --output-dir=/tmp/tmp3.blah
+  CPPFLAGS="-pg" $SOUFFLE $DATALOG_FILE -F $FACTS -w -o $output
 # 2. run it and suppress the output
-  $output > /dev/null
+  ./$output > /dev/null
 # 3. Run gprof
   local temp=$(mktemp /tmp/tmp1.XXXXXX)
   gprof $output gmon.out --flat-profile --brief > $temp
