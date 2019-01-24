@@ -1,0 +1,1 @@
+To use this, you need to change the variables for `root` and `benchdir` to suit your environment. This works exactly the same way as `big_benchmark.sh`, but it uses your chosen souffle executable to run the sample programs `topological_ordering`, `transitive closure`, and `pointsto`. 
