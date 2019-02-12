@@ -1,4 +1,5 @@
-root="/home/rdow6615"
+#!/bin/bash
+root="/home/souffle-lang"
 benchdir="$root/benchmarks/benchmarks"
 programs=(tc topological_ordering pointsto)
 instance=$1
