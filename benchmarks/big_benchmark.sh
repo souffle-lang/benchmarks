@@ -1,6 +1,4 @@
 #!/bin/bash
-## You will need to change this according to ur username
-## and wherever you have doop installed
 OUTDIR=""
 SOUFFLE=""
 
