@@ -4,4 +4,4 @@ Souffle generates C++ code given a datalog program and `profile.sh` shows which 
 You need to specify the facts directory, a souffle instance, and a datalog program. You can also get readable output with the `--pretty` or `-p` flag. Here is an example:
 
 `./profile.sh my_fave.dl --instance=/home/souffle/src/souffle --facts=/crap/facts --pretty`. Or with short options,
-`./profile.sh thingo.dl -I /home/souffle -F facts -p`
+`./profile.sh thingo.dl -I /home/souffle -F facts -p`. Have fun!!!!
